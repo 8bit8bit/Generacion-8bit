@@ -445,12 +445,13 @@ function update(dt){
       document.getElementById('maplabel').textContent='MAPA: '+MAPAS[mapIdx].name;
       sfx.newmap();
       announce('MAPA: '+MAPAS[mapIdx].name,'#00ffff');
-      const c=randomCell(0);
-      if(c){ player.x=c.x; player.y=c.y; }
       foods=[];
     } else {
       announce('OLA '+level,'#00ff41');
     }
+    // siempre reposicionar al jugador en celda libre al cambiar de ola
+    const safeCell=randomCell(0);
+    if(safeCell){ player.x=safeCell.x; player.y=safeCell.y; }
     waveTimer=1.5;
   }
 
